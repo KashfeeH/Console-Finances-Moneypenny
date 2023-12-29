@@ -95,3 +95,33 @@ console.log("Total months: " + totalMonths);
 
 const netProfitloss = finances.reduce((sum, currentValue) => sum + currentValue[1], 0);
 console.log("Total: " + netProfitloss);
+
+//using the array.prototype.map(), a new array has been created called profits. The function
+//is applied to every element in the existing finances array and it returns the second element as indicated by data[1]//
+
+const profits = finances.map(function(data){
+  return (data[1]);
+});
+
+//This portion of the code created an array called differences and it holds the differences between each profit/loss pair
+//and the for loop traverses the entire list//
+
+var differences = [];
+for (var i = 0; i< profits.length-1; i++) {
+  differences.push(profits[i+1]-profits[i]);
+}
+
+//using the array.prototype.reduce() function to calculate the sum of all elements in the differences array.
+//The reduce function takes two parameters, the accumulator, in this case 'a' and 'b' is the currentValue being processed.
+//The initial value for the accumulator is set to 0.
+
+var differencesTotal = differences.reduce(function(a, b) {
+  return a + b;
+}, 0);
+
+//As provided in the instructions, in order to find the average changes is the total differences/(number of months -1).
+//when calculating the differences, this was taken into account by profits.length-1.
+//the result has been formated using number.prototype.toFixed()//
+
+var averageChanges = differencesTotal/differences.length;
+console.log("The average changes of Profit/loss over the entire period is: " +  averageChanges.toFixed(2));
