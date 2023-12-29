@@ -86,3 +86,12 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+console.log("Financial Analysis");
+console.log("----------------------------");
+
+const totalMonths = finances.length;
+console.log("Total months: " + totalMonths);
+
+const netProfitloss = finances.reduce((sum, currentValue) => sum + currentValue[1], 0);
+console.log("Total: " + netProfitloss);
