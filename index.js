@@ -125,3 +125,31 @@ var differencesTotal = differences.reduce(function(a, b) {
 
 var averageChanges = differencesTotal/differences.length;
 console.log("The average changes of Profit/loss over the entire period is: " +  averageChanges.toFixed(2));
+
+//the for loop traverses the entire finances dataset and subtracts the currentValue from the 
+//previousValue to find the highest profits each month with [i] representing the index of the value//
+var maxProfit = 0;
+var maxMonth = '';
+for (let i= 1; i< finances.length; i++) {
+  let currentValue = finances[i][1];
+  let previousValue = finances[i-1][1];
+  let difference = currentValue - previousValue;
+  if (difference > maxProfit) {
+      maxProfit = difference;
+      maxMonth = finances[i][0];
+  }
+  console.log(`Greatest increase in Profits in $:    ${maxMonth}  (${maxProfit})`);
+}
+
+var minLoss = 0;
+var minMonth = '';
+for (let i= 1; i< finances.length; i++) {
+  let currentValue = finances[i][1];
+  let previousValue = finances[i-1][1];
+  let difference = previousValue - currentValue;
+  if (difference > minLoss) {
+      minLoss = difference;
+      minMonth = finances[i][0];
+  }
+  console.log(`Greatest decrease in losses in $:    ${minMonth}  (${minLoss})`);
+}
